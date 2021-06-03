@@ -13,8 +13,9 @@ class CategorySerializer(serializers.ModelSerializer):
     def get_products(self, obj):
         products = Product.objects.filter(category=obj)
         return {
-            "count": products.count(),
-            "items": ProductSerializer(products, many=True).data,
+            "total_itens": products.count(),
+            "itens": ProductSerializer(products, many=True).data,
+            "total_quantity": sum(products.values_list("quantity", flat=True)),
         }
 
 
@@ -28,8 +29,9 @@ class CompanySerializer(serializers.ModelSerializer):
     def get_products(self, obj):
         products = Product.objects.filter(supplier=obj)
         return {
-            "count": products.count(),
-            "items": ProductSerializer(products, many=True).data,
+            "total_itens": products.count(),
+            "itens": ProductSerializer(products, many=True).data,
+            "total_quantity": sum(products.values_list("quantity", flat=True)),
         }
 
 

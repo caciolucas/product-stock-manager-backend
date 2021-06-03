@@ -9,12 +9,18 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ["-id"]
+
 
 class Company(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ["-id"]
 
 
 class Product(models.Model):
@@ -23,3 +29,6 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     supplier = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField()
+
+    class Meta:
+        ordering = ["-id"]

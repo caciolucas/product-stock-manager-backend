@@ -8,7 +8,7 @@ class ProductFilter(filters.FilterSet):
         model = Product
         fields = {
             "name": ["contains"],
-            "quantity": ["gte", "gt", "lte", "lt"],
+            "quantity": ["exact", "gte", "gt", "lte", "lt"],
         }
 
 

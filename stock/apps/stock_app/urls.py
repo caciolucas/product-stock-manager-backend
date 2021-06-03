@@ -10,4 +10,5 @@ router.register("category", views.CategoryViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),
+    path("tarefa-1", views.Task1View.as_view()),
 ]
