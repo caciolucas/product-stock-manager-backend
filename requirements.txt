@@ -8,6 +8,7 @@ django-environ==0.4.5
 django-filter==2.4.0
 djangorestframework==3.12.4
 flake8==3.9.2
+gunicorn==20.1.0
 isort==5.8.0
 mccabe==0.6.1
 mypy-extensions==0.4.3
