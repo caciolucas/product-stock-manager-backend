@@ -52,23 +52,26 @@ class Task1View(APIView):
             for i in range(0, len(string)):
                 if string[i].lower() in vowels:
                     vowels_count[string[i].lower()] += 1
+                    if i > 2:
+                        if (
+                            string[i - 1].lower() in consonants
+                            and string[i - 2].lower() in vowels
+                        ):
+                            can_be.append(string[i])
 
-                if string[i] in vowels:
-                    if string[i - 1] in consonants and string[i - 2] in vowels:
-                        can_be.append(string[i])
+            repeated_vowels = [
+                vowel for vowel, count in vowels_count.items() if count > 1
+            ]
 
             for letter in can_be:
-                print(vowels_count[letter.lower()])
-                if vowels_count[letter.lower()] > 1:
-                    can_be.remove(letter)
-            if len(can_be):
-                vowel = can_be[0]
+                if letter.lower() not in repeated_vowels:
+                    vowel = letter
 
             end_time = datetime.now()
             execution_time = (end_time - start_time).total_seconds() * 1000
 
             return Response(
-                {"string": string, "vogal": vowel, "tempoTotal": f"{execution_time}ms"}
+                {"string": string, "vogal": vowel, "tempoTotal": execution_time}
             )
         else:
             return Response(
